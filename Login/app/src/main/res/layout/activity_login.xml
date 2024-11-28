@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:padding="24sp">
+
+    <TextView
+        android:id="@+id/loginTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130sp"
+        android:text="로그인"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/idTextInputLayout"
+        android:layout_marginTop="20sp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:enabled="true"
+        app:counterMaxLength="15"
+        app:errorEnabled="true"
+        app:counterEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginTextView">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/idTextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionNext"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:hint="아이디"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pwTextInputLayout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:enabled="true"
+        app:counterMaxLength="8"
+        app:errorEnabled="true"
+        app:counterEnabled="true"
+        app:endIconMode="password_toggle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idTextInputLayout">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pwTextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:maxLength="8"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:hint="비밀번호"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="로그인"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pwTextInputLayout" />
+
+    <TextView
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="회원가입"
+        app:layout_constraintStart_toStartOf="@+id/loginButton"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+    <TextView
+        android:id="@+id/findButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:text="아이디 | 비밀번호 찾기"
+        app:layout_constraintStart_toEndOf="@+id/registerButton"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+    <CheckBox
+        android:id="@+id/loginCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="자동 로그인"
+        android:layout_marginStart="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/findButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/findButton"
+        app:layout_constraintTop_toTopOf="@+id/findButton" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <ImageView
+        android:id="@+id/kakaoLoginImageView"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:contentDescription="카카오 로그인 버튼"
+        android:src="@drawable/kakao_login"
+        app:layout_constraintEnd_toEndOf="@+id/loginButton"
+        app:layout_constraintStart_toStartOf="@+id/loginButton"
+        app:layout_constraintTop_toTopOf="@+id/guideLine" />
+
+    <ImageView
+        android:id="@+id/naverLoginImageView"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:paddingEnd="10dp"
+        android:contentDescription="네이버 로그인 버튼"
+        android:src="@drawable/naver_login"
+        app:layout_constraintEnd_toEndOf="@+id/kakaoLoginImageView"
+        app:layout_constraintStart_toStartOf="@+id/kakaoLoginImageView"
+        app:layout_constraintTop_toBottomOf="@+id/kakaoLoginImageView" />
+
+    <ImageView
+        android:id="@+id/googleLoginImageView"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:contentDescription="구글 로그인 버튼"
+        android:src="@drawable/google_login"
+        app:layout_constraintEnd_toEndOf="@+id/kakaoLoginImageView"
+        app:layout_constraintStart_toStartOf="@+id/kakaoLoginImageView"
+        app:layout_constraintTop_toBottomOf="@+id/naverLoginImageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
