@@ -54,10 +54,12 @@
             android:layout_height="wrap_content" />
     </ScrollView>
 
-    <Button
+    <ImageView
+        android:contentDescription="@string/lapButton"
+        android:src="@drawable/lap_button"
         android:id="@+id/lapButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="50dp"
         android:text="@string/lapButton"
         android:visibility="visible"
@@ -65,10 +67,11 @@
         app:layout_constraintEnd_toEndOf="@+id/secTextView"
         app:layout_constraintStart_toStartOf="@+id/timeTextView" />
 
-    <Button
+    <ImageView
+        android:src="@drawable/stop_button"
         android:id="@+id/resetButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:text="@string/resetButton"
         android:layout_marginBottom="50dp"
         android:visibility="gone"
@@ -76,10 +79,11 @@
         app:layout_constraintEnd_toEndOf="@+id/secTextView"
         app:layout_constraintStart_toStartOf="@+id/timeTextView" />
 
-    <Button
+    <ImageView
+        android:src="@drawable/play_button"
         android:id="@+id/startButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:text="@string/startButton"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/lapButton"
@@ -87,21 +91,24 @@
         app:layout_constraintStart_toEndOf="@+id/lapButton"
         app:layout_constraintTop_toTopOf="@+id/lapButton" />
 
-    <Button
+    <ImageView
+        android:src="@drawable/pause_button"
         android:id="@+id/stopButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:text="@string/stopButton"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/lapButton"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/secTextView"
         app:layout_constraintStart_toEndOf="@+id/lapButton"
-        app:layout_constraintTop_toTopOf="@+id/lapButton" />
+        app:layout_constraintTop_toTopOf="@+id/lapButton"  />
 
-    <Button
+    <ImageView
+        android:contentDescription="TODO"
+        android:src="@drawable/play_button"
         android:id="@+id/playButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:text="@string/playButton"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/resetButton"

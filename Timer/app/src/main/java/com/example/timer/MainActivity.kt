@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         TextView(this).apply {
             textSize = 20f
             gravity = Gravity.CENTER
-            text = container.childCount.inc().toString()+
+            text = container.childCount.inc().toString() +
                     "랩 : " +
                     String.format("%02d:%02d", currentDeciSecond.div(10) / 60, currentDeciSecond.div(10) % 60) +
                     String.format(".%01d", currentDeciSecond % 10)
