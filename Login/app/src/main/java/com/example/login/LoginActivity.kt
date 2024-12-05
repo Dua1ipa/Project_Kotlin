@@ -196,7 +196,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
-    
+
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
             println("사용자 이름: ${user.displayName}")
