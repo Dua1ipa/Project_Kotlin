@@ -19,6 +19,6 @@ class MainActivity : AppCompatActivity() {
 
         // Kakao SDK 초기화
         KakaoSdk.init(this, "{NATIVE_APP_KEY}")
-
     }
+
 }
