@@ -2,6 +2,7 @@
 agp = "8.7.3"
 appcompatV7 = "28.0.0"
 browser = "1.8.0"
+firebaseBom = "33.6.0"
 fragmentKtx = "1.8.5"
 kotlin = "1.9.24"
 coreKtx = "1.15.0"
@@ -21,9 +22,12 @@ constraintlayout = "2.2.0"
 moshiKotlin = "1.15.1"
 oauth = "5.9.0"
 oauthJdk8 = "5.10.0"
+playServicesAuth = "21.2.0"
 retrofit = "2.11.0"
 securityCrypto = "1.1.0-alpha06"
 v2All = "2.20.6"
+googleGmsGoogleServices = "4.4.2"
+firebaseAuth = "23.1.0"
 
 [libraries]
 androidx-browser = { module = "androidx.browser:browser", version.ref = "browser" }
@@ -34,6 +38,8 @@ androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-view
 androidx-security-crypto = { module = "androidx.security:security-crypto", version.ref = "securityCrypto" }
 appcompat-v7 = { module = "com.android.support:appcompat-v7", version.ref = "appcompatV7" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+google-firebase-auth = { module = "com.google.firebase:firebase-auth" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -49,6 +55,7 @@ moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "mosh
 oauth = { module = "com.navercorp.nid:oauth", version.ref = "oauthJdk8" }
 oauth-jdk8 = { module = "com.navercorp.nid:oauth-jdk8", version.ref = "oauthJdk8" }
 oauth-v590 = { module = "com.navercorp.nid:oauth", version.ref = "oauth" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 v2-all = { module = "com.kakao.sdk:v2-all", version.ref = "v2All" }
 v2-cert = { module = "com.kakao.sdk:v2-cert", version.ref = "v2All" }
@@ -57,8 +64,10 @@ v2-navi = { module = "com.kakao.sdk:v2-navi", version.ref = "v2All" }
 v2-share = { module = "com.kakao.sdk:v2-share", version.ref = "v2All" }
 v2-talk = { module = "com.kakao.sdk:v2-talk", version.ref = "v2All" }
 v2-user = { module = "com.kakao.sdk:v2-user", version.ref = "v2All" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 

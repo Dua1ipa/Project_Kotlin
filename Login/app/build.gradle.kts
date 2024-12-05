@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -39,10 +40,11 @@ android {
 }
 
 dependencies {
+    implementation(libs.play.services.auth)
+    implementation(libs.google.firebase.auth)
+    implementation(platform(libs.firebase.bom))
 
-    implementation(libs.oauth) // jdk 11
-    implementation(libs.oauth.jdk8) // jdk 8
-    implementation(files("libs/oauth-5.10.0.aar"))
+    implementation(libs.oauth) // jdk 11 (네이버 로그인)
 
     implementation (libs.v2.all) //전체 모듈 설치, 2.11.0 버전부터 지원
     implementation (libs.v2.user) //카카오 로그인 API 모듈
@@ -59,11 +61,11 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-//    implementation (libs.appcompat.v7)
     implementation (libs.kotlin.stdlib)
     implementation (libs.kotlinx.coroutines.android)
     implementation (libs.androidx.legacy.support.core.utils)

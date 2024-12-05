@@ -3,4 +3,5 @@
     <string name="naver_Client_ID">tIMR_4wnaQ3H8wQBdEP4</string>
     <string name="naver_client_secret">4sBmuDOm3a</string>
     <string name="kakao_native_key">832cfb591774a7d5cd819e3473967cae</string>
+    <string name="google_client_ID">887172896057-h14l9f7ua5q30b9c88bkoisl7u3imrtl.apps.googleusercontent.com</string>
 </resources>

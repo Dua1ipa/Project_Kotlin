@@ -151,6 +151,6 @@
         android:src="@drawable/google_login"
         app:layout_constraintEnd_toEndOf="@+id/kakaoLoginImageView"
         app:layout_constraintStart_toStartOf="@+id/kakaoLoginImageView"
-        app:layout_constraintTop_toBottomOf="@+id/naverLoginImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/naverOauthLoginButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
