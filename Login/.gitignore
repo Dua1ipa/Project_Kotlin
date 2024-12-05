@@ -14,4 +14,4 @@
 .cxx
 local.properties
 
-res/values/API_KEY.xml
+API_KEY.xml
