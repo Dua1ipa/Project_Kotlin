@@ -16,9 +16,6 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Kakao SDK 초기화
-        KakaoSdk.init(this, "{NATIVE_APP_KEY}")
     }
 
 }

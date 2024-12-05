@@ -40,6 +40,10 @@ android {
 
 dependencies {
 
+    implementation(libs.oauth) // jdk 11
+    implementation(libs.oauth.jdk8) // jdk 8
+    implementation(files("libs/oauth-5.10.0.aar"))
+
     implementation (libs.v2.all) //전체 모듈 설치, 2.11.0 버전부터 지원
     implementation (libs.v2.user) //카카오 로그인 API 모듈
     implementation (libs.v2.share) //카카오톡 공유 API 모듈
@@ -58,4 +62,18 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+//    implementation (libs.appcompat.v7)
+    implementation (libs.kotlin.stdlib)
+    implementation (libs.kotlinx.coroutines.android)
+    implementation (libs.androidx.legacy.support.core.utils)
+    implementation (libs.androidx.browser)
+    implementation (libs.androidx.security.crypto)
+    implementation (libs.androidx.fragment.ktx)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.moshi.kotlin)
+    implementation (libs.logging.interceptor)
+
 }
