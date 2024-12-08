@@ -126,9 +126,11 @@ class LoginActivity : AppCompatActivity() {
         }
 
         // 네이버 로그인 버튼 //
-        binding.naverOauthLoginButton.setOAuthLogin(launcher)
-        NaverIdLoginSDK.authenticate(this, launcher)
-
+        binding.naverOauthLoginButton.setOnClickListener {
+            launcher
+            NaverIdLoginSDK.authenticate(this, launcher)
+        }
+        
         // 구글 로그인 //
         auth = FirebaseAuth.getInstance()  //Firebase Auth 초기화
         binding.googleLoginImageView.setOnClickListener {
