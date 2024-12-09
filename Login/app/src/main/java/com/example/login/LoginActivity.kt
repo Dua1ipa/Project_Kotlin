@@ -3,6 +3,7 @@ package com.example.login
 import android.content.Intent
 import android.content.IntentSender
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -40,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
 
     // 카카오계정으로 로그인 공통 callback 구성 //
     // 카카오톡으로 로그인 할 수 없어 카카오계정으로 로그인할 경우 사용됨
-    val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+    private val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         if (error != null) {
             Log.e(TAG, "카카오계정으로 로그인 실패", error)
         } else if (token != null) {
@@ -76,6 +77,28 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+    // 구글 로그인 런쳐 //
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            REQ_ONE_TAP -> {
+                try {
+                    val credential = oneTapClient.getSignInCredentialFromIntent(data)
+                    val idToken = credential.googleIdToken
+                    if (idToken != null) {
+                        Log.e(TAG, "토큰 보유")
+                        firebaseAuthWithGoogle(idToken)
+                    } else {
+                        Log.e(TAG, "토큰 없음")
+                    }
+                } catch (e: ApiException) {
+                    e.printStackTrace()
+                    Log.e(TAG, "실패", e)
+                }
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -85,7 +108,7 @@ class LoginActivity : AppCompatActivity() {
         // Kakao SDK 초기화
         KakaoSdk.init(this, "{NATIVE_APP_KEY}")
         // Naver SDK 초기화
-        NaverIdLoginSDK.initialize(this, "tIMR_4wnaQ3H8wQBdEP4", "4sBmuDOm3a", "LoginModule")
+        NaverIdLoginSDK.initialize(this, getString(R.string.naver_client_ID), getString(R.string.naver_client_secret), "LoginModule")
 
         // 카카오 로그인 버튼 //
         binding.kakaoLoginImageView.setOnClickListener {
@@ -138,9 +161,9 @@ class LoginActivity : AppCompatActivity() {
             signUpRequest = BeginSignInRequest.builder()
                 .setGoogleIdTokenRequestOptions(
                     BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-                        .setSupported(true)
-                        .setServerClientId(getString(R.string.google_client_ID))
-                        .setFilterByAuthorizedAccounts(false)
+                        .setSupported(true) //Google ID 토큰 지원
+                        .setServerClientId(getString(R.string.google_client_ID)) //웹 클라이언트 ID
+                        .setFilterByAuthorizedAccounts(false) //인증된 계정 필터링 여부
                         .build()
                 )
                 .setAutoSelectEnabled(true)  //자동 로그인 활성화
@@ -149,6 +172,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    // 원탭 로그인 함수 //
     private fun startOneTapSignIn() {
         oneTapClient.beginSignIn(signUpRequest)
             .addOnSuccessListener(this) { result ->
@@ -159,31 +183,30 @@ class LoginActivity : AppCompatActivity() {
                 }
                 catch (e: IntentSender.SendIntentException) { Log.e(TAG, "원탭 오류") }
             }
-            .addOnFailureListener(this) { e -> Log.e(TAG, "원탭 실패") }
-    }
-
-    // 구글 로그인 런쳐 //
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            REQ_ONE_TAP -> {
-                try {
-                    val credential = oneTapClient.getSignInCredentialFromIntent(data)
-                    val idToken = credential.googleIdToken
-                    if (idToken != null) {
-                        Log.e(TAG, "토큰 보유")
-                        firebaseAuthWithGoogle(idToken)
-                    } else {
-                        Log.e(TAG, "토큰 없음")
-                    }
-                } catch (e: ApiException) {
-                    e.printStackTrace()
-                    Log.e(TAG, "실패", e)
-                }
+            .addOnFailureListener(this) { e ->
+                Log.e(TAG, "원탭 실패")
+                handleNoGoogleAccount(e) // 실패 처리
             }
+    }
+    // Google 계정이 없을 때 처리 함수 //
+    private fun handleNoGoogleAccount(exception: Exception) {
+        if (exception.localizedMessage?.contains("No eligible accounts") == true) {
+            // "기기에서 Google 계정을 찾을 수 없습니다"와 같은 메시지 표시
+            Toast.makeText(this, "Google 계정을 추가하세요.", Toast.LENGTH_SHORT).show()
+            promptUserToAddAccount()
+        } else {
+            Log.e("OneTapLogin", "알 수 없는 오류: ${exception.localizedMessage}")
         }
     }
 
+    private fun promptUserToAddAccount() {
+        val intent = Intent(Settings.ACTION_ADD_ACCOUNT).apply {
+            putExtra(Settings.EXTRA_ACCOUNT_TYPES, arrayOf("com.google"))
+        }
+        startActivity(intent)
+    }
+
+    // ID 토큰을 Firebase Authentication에 전달하여 사용자 인증 //
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
